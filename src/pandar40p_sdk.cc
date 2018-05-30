@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright 2018 The Apollo Authors. All Rights Reserved.
+ * Copyright 2018 The Hesai Technology Authors. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -152,7 +152,7 @@ void Pandar40PSDK_Internal::GetCalibrationFromDevice() {
 }
 
 /*****************************************************************************************
-Pandora Part
+Pandar40PSDK Part
 *****************************************************************************************/
 /**
  * @brief Constructor
@@ -162,8 +162,6 @@ Pandora Part
  *        pcl_callback      The callback of PCL data structure
  *        gps_callback      The callback of GPS structure
  *        start_angle       The start angle of every point cloud
- *        pandoraCameraPort The port of camera data
- *        cameraCallback    the call back for camera data
  */
 Pandar40PSDK::Pandar40PSDK(
     std::string device_ip, const uint16_t lidar_port, const uint16_t gps_port,
@@ -198,7 +196,7 @@ void Pandar40PSDK::ResetLidarStartAngle(uint16_t start_angle) {
 
 /**
  * @brief Get Lidar's Calibration.
- * @param contents The correction contents of lidar correction
+ * @return The correction contents of lidar correction
  */
 std::string Pandar40PSDK::GetLidarCalibration() {
   return internal_->GetLidarCalibration();

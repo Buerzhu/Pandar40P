@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright 2018 The Apollo Authors. All Rights Reserved.
+ * Copyright 2018 The Hesai Technology Authors. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 #ifndef INCLUDE_PANDAR40P_SDK_PANDAR40P_SDK_H_
 #define INCLUDE_PANDAR40P_SDK_PANDAR40P_SDK_H_
 
-#include <opencv2/highgui/highgui_c.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 #include <pthread.h>
@@ -27,7 +26,6 @@
 #include <vector>
 
 #include <boost/function.hpp>
-#include <opencv2/opencv.hpp>
 
 #include "pandar40p/pandar40p.h"
 #include "pandar40p/point_types.h"

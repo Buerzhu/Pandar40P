@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright 2018 The Apollo Authors. All Rights Reserved.
+ * Copyright 2018 The Hesai Technology Authors. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -211,7 +211,7 @@ void* TcpCommandClientNew(const char* ip, const unsigned short port) {
   }
   memset(client, 0, sizeof(TcpCommandClient));
   client->fd = -1;
-  snprintf(client->ip, "%s", ip);
+  strncpy(client->ip, ip, strlen(ip));
   client->port = port;
 
   pthread_mutex_init(&client->lock, NULL);

@@ -3,7 +3,6 @@ project(Pandar40PSDK)
 
 find_package( Boost REQUIRED )
 find_package( PCL REQUIRED COMPONENTS common )
-#find_package( OpenCV REQUIRED )
 
 set (CMAKE_CXX_FLAGS "-fPIC --std=c++11")
 
@@ -18,14 +17,6 @@ include_directories(
     ${OpenCV_INCLUDE_DIRS}
 )
 
-set(OpenCV_LIBS
-    opencv_core
-    opencv_highgui
-    opencv_imgproc
-    opencv_contrib
-    opencv_calib3d
-    )
-
 add_library( ${PROJECT_NAME} SHARED
     src/pandar40p_sdk.cc
     src/tcp_command_client.c
@@ -36,7 +27,6 @@ target_link_libraries(${PROJECT_NAME}
     Pandar40P
     ${Boost_LIBRARIES}
     ${PCL_IO_LIBRARIES}
-    ${OpenCV_LIBS}
     yaml-cpp
 )
 
@@ -51,7 +41,6 @@ target_link_libraries(pandar40p_test
     ${PROJECT_NAME}
     ${Boost_LIBRARIES}
     ${PCL_IO_LIBRARIES}
-    ${OpenCV_LIBS}
     yaml-cpp
 )
 
