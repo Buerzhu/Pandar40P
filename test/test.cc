@@ -16,8 +16,6 @@
 
 #include "pandar40p_sdk/pandar40p_sdk.h"
 
-using namespace apollo::drivers::hesai;
-
 double pandoraToSysTimeGap = 0;
 int gpsTimestamp = 0;
 
@@ -26,7 +24,9 @@ void gpsCallback(int timestamp) {
   gettimeofday(&ts, NULL);
   gpsTimestamp = timestamp;
   pandoraToSysTimeGap =
-      (double)ts.tv_sec + ((double)ts.tv_usec / 1000000.0) - (double)timestamp;
+      static_cast<double>(ts.tv_sec) + \
+      (static_cast<double>(ts.tv_usec) / 1000000.0) - \
+      static_cast<double>(timestamp);
   printf("gps: %d, gap: %f\n", timestamp, pandoraToSysTimeGap);
 }
 
@@ -38,10 +38,13 @@ void lidarCallback(boost::shared_ptr<PPointCloud> cld, double timestamp) {
 }
 
 int main(int argc, char** argv) {
-  Pandar40PSDK pandar40p(std::string("192.168.20.51"), 2368, 10110, lidarCallback,
-                  gpsCallback, 13500, 0, std::string("hesai40"));
+  Pandar40PSDK pandar40p(std::string("192.168.20.51"),
+                  2368, 10110, lidarCallback, gpsCallback,
+                  13500, 0, std::string("hesai40"));
   pandar40p.Start();
   while (true) {
     sleep(100);
   }
+
+  return 0;
 }

@@ -14,8 +14,8 @@
  * limitations under the License.
  *****************************************************************************/
 
-#ifndef INCLUDE_PANDAR40P_SDK_H_
-#define INCLUDE_PANDAR40P_SDK_H_
+#ifndef INCLUDE_PANDAR40P_SDK_PANDAR40P_SDK_H_
+#define INCLUDE_PANDAR40P_SDK_PANDAR40P_SDK_H_
 
 #include <opencv2/highgui/highgui_c.h>
 #include <pcl/io/pcd_io.h>
@@ -31,10 +31,6 @@
 
 #include "pandar40p/pandar40p.h"
 #include "pandar40p/point_types.h"
-
-namespace apollo {
-namespace drivers {
-namespace hesai {
 
 class Pandar40PSDK_Internal;
 
@@ -94,8 +90,4 @@ class Pandar40PSDK {
   Pandar40PSDK_Internal *internal_;
 };
 
-}  // namespace hesai
-}  // namespace drivers
-}  // namespace apollo
-
-#endif  // INCLUDE_PANDAR40P_SDK_H_
+#endif  // INCLUDE_PANDAR40P_SDK_PANDAR40P_SDK_H_

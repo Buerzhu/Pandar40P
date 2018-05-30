@@ -211,7 +211,7 @@ void* TcpCommandClientNew(const char* ip, const unsigned short port) {
   }
   memset(client, 0, sizeof(TcpCommandClient));
   client->fd = -1;
-  strcpy(client->ip, ip);
+  snprintf(client->ip, "%s", ip);
   client->port = port;
 
   pthread_mutex_init(&client->lock, NULL);

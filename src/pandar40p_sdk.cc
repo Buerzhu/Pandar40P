@@ -18,10 +18,6 @@
 #include "src/tcp_command_client.h"
 #include "yaml-cpp/yaml.h"
 
-namespace apollo {
-namespace drivers {
-namespace hesai {
-
 #define PANDAR40PSDK_TCP_COMMAND_PORT (9347)
 
 class Pandar40PSDK_Internal {
@@ -41,7 +37,7 @@ class Pandar40PSDK_Internal {
   void Stop();
 
  private:
-  Pandar40P *pandar40p_;
+  apollo::drivers::hesai::Pandar40P *pandar40p_;
   void *tcp_command_client_;
   boost::thread *get_calibration_thr_;
   bool enable_get_calibration_thr_;
@@ -57,8 +53,8 @@ Pandar40PSDK_Internal::Pandar40PSDK_Internal(
     int tz, std::string frame_id) {
   pandar40p_ = NULL;
 
-  pandar40p_ = new Pandar40P(device_ip, lidar_port, gps_port, pcl_callback,
-                             gps_callback, start_angle, tz, frame_id);
+  pandar40p_ = new apollo::drivers::hesai::Pandar40P(device_ip, lidar_port,
+            gps_port, pcl_callback, gps_callback, start_angle, tz, frame_id);
 
   tcp_command_client_ =
       TcpCommandClientNew(device_ip.c_str(), PANDAR40PSDK_TCP_COMMAND_PORT);
@@ -81,7 +77,8 @@ Pandar40PSDK_Internal::~Pandar40PSDK_Internal() {
  * @brief load the correction file
  * @param file The path of correction file
  */
-int Pandar40PSDK_Internal::LoadLidarCorrectionFile(std::string correction_content) {
+int Pandar40PSDK_Internal::LoadLidarCorrectionFile(
+    std::string correction_content) {
   return pandar40p_->LoadCorrectionFile(correction_content);
 }
 
@@ -181,7 +178,7 @@ Pandar40PSDK::Pandar40PSDK(
 /**
  * @brief deconstructor
  */
-Pandar40PSDK::~Pandar40PSDK() { };//delete internal_; }
+Pandar40PSDK::~Pandar40PSDK() { delete internal_; }
 
 /**
  * @brief load the lidar correction file
@@ -216,7 +213,3 @@ int Pandar40PSDK::Start() { internal_->Start(); }
  * @brief Stop SDK.
  */
 void Pandar40PSDK::Stop() { internal_->Stop(); }
-
-}  // namespace hesai
-}  // namespace drivers
-}  // namespace apollo
